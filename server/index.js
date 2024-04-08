@@ -8,8 +8,9 @@ const uri = process.env.MONGODB_URI;
 const app = express();
 
 //middleware
-app.use( authRouter );
 app.use( express.json() );
+app.use( authRouter );
+
 
 //database connection
 mongoose.connect( uri ).then( () => {
@@ -18,7 +19,7 @@ mongoose.connect( uri ).then( () => {
     console.log( `Error  connecting to the database: ${e}` );
 } )
 
-app.listen( PORT, () => {
+app.listen( PORT, "0.0.0.0", () => {
     console.log( `app is running on ${PORT}` );
 }
 );
